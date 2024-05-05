@@ -23,23 +23,6 @@ namespace InventDipl
             TbxPass.UseSystemPasswordChar = true;
         }
 
-        private void TbxPass_IconLeftClick(object sender, EventArgs e)
-        {
-            Image visibleIcon = Properties.Resources.visible;
-            Image closeEyeIcon = Properties.Resources.close_eye;
-
-            if (IsSameImage(TbxPass.IconLeft, visibleIcon))
-            {
-                TbxPass.IconLeft = closeEyeIcon;
-                TbxPass.UseSystemPasswordChar = true;
-            }
-            else if (IsSameImage(TbxPass.IconLeft, closeEyeIcon))
-            {
-                TbxPass.IconLeft = visibleIcon;
-                TbxPass.UseSystemPasswordChar = false;
-            }
-        }
-
         private bool IsSameImage(Image img1, Image img2)
         {
             using (MemoryStream ms1 = new MemoryStream(), ms2 = new MemoryStream())
@@ -53,6 +36,29 @@ namespace InventDipl
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TbxPass_IconRightClick(object sender, EventArgs e)
+        {
+            Image visibleIcon = Properties.Resources.visible;
+            Image closeEyeIcon = Properties.Resources.close_eye;
+
+            if (IsSameImage(TbxPass.IconRight, visibleIcon))
+            {
+                TbxPass.IconRight = closeEyeIcon;
+                TbxPass.UseSystemPasswordChar = true;
+            }
+            else if (IsSameImage(TbxPass.IconRight, closeEyeIcon))
+            {
+                TbxPass.IconRight = visibleIcon;
+                TbxPass.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void ButtonSignIn_Click(object sender, EventArgs e)
+        {
+            FormMain Frm = new FormMain();
+            Frm.ShowDialog();
         }
     }
 }
