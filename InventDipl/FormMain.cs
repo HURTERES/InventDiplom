@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -331,9 +332,100 @@ namespace InventDipl
                         }
                     }
                 }
+
+                BtnEdit.Visible = true;
+                BtnDel.Visible = true;
             }
         }
         string Id, Names, Num, Unit, Price, Counts, Cost, Status, Purpose, AccountNum, BookValue, Note, Photo;
+
+        private void PbxPhoto_DoubleClick(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files (*.png)|*.png";
+                openFileDialog.Title = "Выберите изображение";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string selectedFile = openFileDialog.FileName;
+                        PbxPhoto.Image = System.Drawing.Image.FromFile(selectedFile);
+                        Photo = selectedFile.Substring(selectedFile.LastIndexOf('\\') + 1);
+
+                        string debugFolderPath = Path.Combine(Application.StartupPath, "\\Photo");
+
+                        string debugFilePath = Path.Combine(debugFolderPath, Path.GetFileName(selectedFile));
+
+                        File.Copy(selectedFile, Application.StartupPath + debugFilePath, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при открытии файла: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void TbxAccept_Click(object sender, EventArgs e)
+        {
+            try {
+                SqlConnection Con = new SqlConnection(TxtCon);
+                SqlCommand Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values",Con);
+            }
+            catch
+            {
+             
+            }
+            PanelAddEdit.Visible = false;
+            PanelData.Visible = true;
+            TbxSearch.Visible = true;
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            PanelAddEdit.Visible = true;
+            PanelData.Visible = false;
+            TbxSearch.Visible = false;
+        }
+
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            SqlConnection Con = new SqlConnection(TxtCon);
+            SqlCommand Cmd = new SqlCommand("select * from Product", Con);
+            Con.Open();
+            SqlDataReader Res = Cmd.ExecuteReader();
+            if (Res != null)
+                while (Res.Read())
+                {
+                    Count++;
+                    Id = Res["IdProduct"].ToString();
+                    Names = Res["Name"].ToString();
+                    Num = Res["Number"].ToString();
+                    Unit = Res["Unit"].ToString();
+                    Price = Res["Price"].ToString();
+                    Counts = Res["Count"].ToString();
+                    Cost = Res["Cost"].ToString();
+                    Status = Res["Status"].ToString();
+                    Purpose = Res["Purpose"].ToString();
+                    AccountNum = Res["AccountNum"].ToString();
+                    BookValue = Res["BookValue"].ToString();
+                    Note = Res["Note"].ToString();
+                    Photo = Application.StartupPath + "\\Photo\\" + Res["Photo"].ToString();
+                    GeneratePanel(Count);
+                }
+            Con.Close();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Count++;
+                GeneratePanel(Count);
+            }
+
+        
+        }
+
         private void Guna2CustomGradientPanel2_Click(object sender, EventArgs e)
         {
             if (sender is Guna2CustomGradientPanel panel)
@@ -403,44 +495,14 @@ namespace InventDipl
                     
                 }
 
-
+            BtnEdit.Visible = true;
+            BtnDel.Visible = true;
         }
         private void FormMain_Shown(object sender, EventArgs e)
         {
-            this.ActiveControl = null;
+            this.ActiveControl = null;         
 
-            SqlConnection Con = new SqlConnection(TxtCon);
-            SqlCommand Cmd = new SqlCommand("select * from Product", Con);
-            Con.Open();
-            SqlDataReader Res = Cmd.ExecuteReader();
-            if (Res != null)
-                while(Res.Read())
-                {
-                    Count++;
-                    Id = Res["IdProduct"].ToString();
-                    Names = Res["Name"].ToString();
-                    Num = Res["Number"].ToString();
-                    Unit= Res["Unit"].ToString();
-                    Price= Res["Price"].ToString();
-                    Counts= Res["Count"].ToString();
-                    Cost= Res["Cost"].ToString();
-                    Status= Res["Status"].ToString();
-                    Purpose= Res["Purpose"].ToString();
-                    AccountNum= Res["AccountNum"].ToString();
-                    BookValue= Res["BookValue"].ToString();
-                    Note= Res["Note"].ToString();
-                    Photo= Application.StartupPath +"\\Photo\\"+Res["Photo"].ToString();
-                    GeneratePanel(Count);
-                
-                }
-            Con.Close();
-
-            for (int i = 0; i < 3; i++)
-            {
-                Count++;
-                GeneratePanel(Count);
-            }
-
+            // Настройка Scroll для панели с выводимыми данными о товарах
             PanelData.HorizontalScroll.Enabled = false;
             PanelData.VerticalScroll.Enabled = true;
             PanelData.HorizontalScroll.Maximum = 0;
