@@ -37,7 +37,6 @@ namespace InventDipl
         int Count = 0;
         void GeneratePanel(int Count)
         {
-
             PictureBox Pbx = new PictureBox();
             Pbx.Location = new System.Drawing.Point(8, 8);
             Pbx.Name = "Pbx";
@@ -48,6 +47,9 @@ namespace InventDipl
             try { Pbx.Image = System.Drawing.Image.FromFile(Photo); }
             catch { Pbx.Image = System.Drawing.Image.FromFile(Application.StartupPath +"\\Photo\\NoPhoto.jpg"); }
             Pbx.Click += ShowLabelInformation;
+            Guna2Elipse El = new Guna2Elipse();
+            El.BorderRadius = 8;
+            El.TargetControl = Pbx;
 
             System.Windows.Forms.Label LblId = new System.Windows.Forms.Label();
             LblId.AutoSize = true;
@@ -184,37 +186,37 @@ namespace InventDipl
             // Разделяющие панели
             System.Windows.Forms.Panel Pn1 = new System.Windows.Forms.Panel();
             Pn1.BackColor = System.Drawing.Color.Black;
-            Pn1.Location = new System.Drawing.Point(275, 0);
+            Pn1.Location = new System.Drawing.Point(275, 8);
             Pn1.Name = "Pn1";
             Pn1.Size = new System.Drawing.Size(2, 84);
             Pn1.TabIndex = 18;
             System.Windows.Forms.Panel Pn2 = new System.Windows.Forms.Panel();
             Pn2.BackColor = System.Drawing.Color.Black;
-            Pn2.Location = new System.Drawing.Point(379, 0);
+            Pn2.Location = new System.Drawing.Point(379, 8);
             Pn2.Name = "Pn2";
             Pn2.Size = new System.Drawing.Size(2, 84);
             Pn2.TabIndex = 19;
             System.Windows.Forms.Panel Pn3 = new System.Windows.Forms.Panel();
             Pn3.BackColor = System.Drawing.Color.Black;
-            Pn3.Location = new System.Drawing.Point(578, 0);
+            Pn3.Location = new System.Drawing.Point(578, 8);
             Pn3.Name = "Pn3";
             Pn3.Size = new System.Drawing.Size(2, 84);
             Pn3.TabIndex = 20;
             System.Windows.Forms.Panel Pn4 = new System.Windows.Forms.Panel();
             Pn4.BackColor = System.Drawing.Color.Black;
-            Pn4.Location = new System.Drawing.Point(742, 0);
+            Pn4.Location = new System.Drawing.Point(742, 8);
             Pn4.Name = "Pn4";
             Pn4.Size = new System.Drawing.Size(2, 84);
             Pn4.TabIndex = 21;
             System.Windows.Forms.Panel Pn5 = new System.Windows.Forms.Panel();
             Pn5.BackColor = System.Drawing.Color.Black;
-            Pn5.Location = new System.Drawing.Point(958, 0);
+            Pn5.Location = new System.Drawing.Point(958, 8);
             Pn5.Name = "Pn5";
             Pn5.Size = new System.Drawing.Size(2, 84);
             Pn5.TabIndex = 21;
             System.Windows.Forms.Panel Pn6 = new System.Windows.Forms.Panel();
             Pn6.BackColor = System.Drawing.Color.Black;
-            Pn6.Location = new System.Drawing.Point(1188, 0);
+            Pn6.Location = new System.Drawing.Point(1188, 8);
             Pn6.Name = "Pn6";
             Pn6.Size = new System.Drawing.Size(2, 84);
             Pn6.TabIndex = 21;
@@ -244,7 +246,7 @@ namespace InventDipl
             guna2CustomGradientPanel2.FillColor = System.Drawing.Color.DarkOrchid;
             guna2CustomGradientPanel2.FillColor2 = System.Drawing.Color.DarkOrchid;
             guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(163)))), ((int)(((byte)(249)))));
-            guna2CustomGradientPanel2.Location = new System.Drawing.Point(5, 100*Count+15*Count-15);
+            guna2CustomGradientPanel2.Location = new System.Drawing.Point(5, 100*Count+15*Count-115);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.Size = new System.Drawing.Size(1359, 102);
             guna2CustomGradientPanel2.TabIndex = 1;
@@ -265,9 +267,9 @@ namespace InventDipl
                 if (control.Parent is Guna2CustomGradientPanel panel)
                 {
                     // Сначала изменяем цвет FillColor только для текущей активной панели
-                    panel.FillColor = Color.LimeGreen;
-                    panel.FillColor2 = Color.Lime;
-                    panel.FillColor4 = Color.White;
+                    panel.FillColor = Color.Lime;
+                    panel.FillColor2 = Color.Green;
+                    panel.FillColor4 = Color.Lime;
 
                     // Затем проходим по всем панелям в контейнере PanelData и изменяем цвет FillColor на DarkOrchid
                     foreach (System.Windows.Forms.Control ctrl in PanelData.Controls)
@@ -343,9 +345,54 @@ namespace InventDipl
         }
         string Id, Names, Num, Unit, Price, Counts, Cost, Status, Purpose, AccountNum, BookValue, Note, Photo;
 
+        private void BtnDel_Click(object sender, EventArgs e)
+        {
+            SqlConnection Con = new SqlConnection(TxtCon);
+            SqlCommand Cmd = new SqlCommand();
+            int IdData = int.Parse(Id);
+            Cmd = new SqlCommand($"delete from Product where IdProduct = {Id}", Con);  
+            Con.Open();
+            Cmd.ExecuteNonQuery();
+            Con.Close();
+            ShowDataFromDB();
+            MessageBox.Show($"Данные о записи {IdData} удалены");
+        }
+
+        private void TbxSearch_IconRightClick(object sender, EventArgs e)
+        {
+            Count = 0;
+            PanelData.Controls.Clear();
+            SqlConnection Con = new SqlConnection(TxtCon);
+            SqlCommand Cmd = new SqlCommand($"select * from Product where [Name] like '%{TbxSearch.Text}%'", Con);
+            Con.Open();
+            SqlDataReader Res = Cmd.ExecuteReader();
+            if (Res != null)
+                while (Res.Read())
+                {
+                    Count++;
+                    Id = Res["IdProduct"].ToString();
+                    Names = Res["Name"].ToString();
+                    Num = Res["Number"].ToString();
+                    Unit = Res["Unit"].ToString();
+                    Price = Res["Price"].ToString();
+                    Counts = Res["Count"].ToString();
+                    Cost = Res["Cost"].ToString();
+                    Status = Res["Status"].ToString();
+                    Purpose = Res["Purpose"].ToString();
+                    AccountNum = Res["AccountNum"].ToString();
+                    BookValue = Res["BookValue"].ToString();
+                    Note = Res["Note"].ToString();
+                    Photo = Application.StartupPath + "\\Photo\\" + Res["Photo"].ToString();
+                    GeneratePanel(Count);
+                }
+            Con.Close();
+        }
+
         private void BtnCancel_Click(object sender, EventArgs e)
         {
+            ShowDataFromDB();
             PhotoCapture = false;
+            PanelNames.Visible = true;
             PanelAddEdit.Visible = false;
             PanelData.Visible = true;
             TbxSearch.Visible = true;
@@ -396,6 +443,7 @@ namespace InventDipl
                 PanelAddEdit.Visible = false;
                 PanelData.Visible = true;
                 TbxSearch.Visible = true;
+                PanelNames.Visible = true;
                 ShowDataFromDB();
             }
             catch
@@ -406,14 +454,30 @@ namespace InventDipl
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            TbxName.Clear();
+            TbxPrice.Clear();
+            TbxNum.Clear();
+            TbxBookValue.Clear();
+            TbxCount.Clear();
+            TbxAccountNum.Clear();
+            TbxNote.Clear();
+            PbxPhoto.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\" + "NoPhoto.jpg"); ;
+            CmbUnit.SelectedIndex = 0;
+            CmbStatus.SelectedIndex = 0;
+            CmbPurpose.SelectedIndex = 0;
             PanelAddEdit.Visible = true;
             PanelData.Visible = false;
             TbxSearch.Visible = false;
+            PanelNames.Visible = false;
+            BtnDel.Visible = false;
+            BtnEdit.Visible = false;
         }
 
 
         void ShowDataFromDB()
         {
+            Count = 0;
+            PanelData.Controls.Clear();
             SqlConnection Con = new SqlConnection(TxtCon);
             SqlCommand Cmd = new SqlCommand("select * from Product", Con);
             Con.Open();
@@ -449,9 +513,9 @@ namespace InventDipl
             if (sender is Guna2CustomGradientPanel panel)
             {
                 // Сначала изменяем цвет FillColor только для текущей активной панели
-                panel.FillColor = Color.LimeGreen;
-                panel.FillColor2 = Color.Lime;
-                panel.FillColor4 = Color.White;
+                panel.FillColor = Color.Lime;
+                panel.FillColor2 = Color.Green;
+                panel.FillColor4 = Color.Lime;
 
                 // Затем проходим по всем панелям в контейнере PanelData и изменяем цвет FillColor на DarkOrchid
                 foreach (System.Windows.Forms.Control control in PanelData.Controls)
