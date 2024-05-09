@@ -30,12 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Zoom = new System.Windows.Forms.PictureBox();
+            this.TbxSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.PanelBtns = new System.Windows.Forms.Panel();
             this.BtnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.BtnEdit = new Guna.UI2.WinForms.Guna2Button();
             this.BtnDel = new Guna.UI2.WinForms.Guna2Button();
+            this.PbxPhotoUser = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse2 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
@@ -74,6 +79,7 @@
             this.LblNum = new System.Windows.Forms.Label();
             this.LblName = new System.Windows.Forms.Label();
             this.LblId = new System.Windows.Forms.Label();
+            this.Pbx = new System.Windows.Forms.PictureBox();
             this.LblRurpose = new System.Windows.Forms.Label();
             this.guna2Elipse6 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse7 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -82,7 +88,9 @@
             this.guna2Elipse10 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse11 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.PanelAddEdit = new System.Windows.Forms.Panel();
+            this.BtnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.PbxPhoto = new System.Windows.Forms.PictureBox();
             this.TbxAccept = new Guna.UI2.WinForms.Guna2Button();
             this.label23 = new System.Windows.Forms.Label();
             this.TbxNote = new Guna.UI2.WinForms.Guna2TextBox();
@@ -106,25 +114,19 @@
             this.LblAddEdit = new System.Windows.Forms.Label();
             this.elipce = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse12 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
-            this.PbxPhoto = new System.Windows.Forms.PictureBox();
-            this.Pbx = new System.Windows.Forms.PictureBox();
-            this.PbxPhotoUser = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.Zoom = new System.Windows.Forms.PictureBox();
-            this.TbxSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.guna2Elipse13 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.PanelBtns.SuspendLayout();
-            this.PanelData.SuspendLayout();
-            this.guna2CustomGradientPanel2.SuspendLayout();
-            this.PanelAddEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Pbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxPhotoUser)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.PanelBtns.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxPhotoUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.PanelData.SuspendLayout();
+            this.guna2CustomGradientPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx)).BeginInit();
+            this.PanelAddEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -138,6 +140,62 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1590, 57);
             this.panel1.TabIndex = 0;
+            // 
+            // Zoom
+            // 
+            this.Zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Zoom.BackColor = System.Drawing.Color.Transparent;
+            this.Zoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Zoom.Image = global::InventDipl.Properties.Resources.expand1;
+            this.Zoom.Location = new System.Drawing.Point(1531, 10);
+            this.Zoom.Name = "Zoom";
+            this.Zoom.Size = new System.Drawing.Size(41, 36);
+            this.Zoom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Zoom.TabIndex = 6;
+            this.Zoom.TabStop = false;
+            this.Zoom.Click += new System.EventHandler(this.Zoom_Click);
+            // 
+            // TbxSearch
+            // 
+            this.TbxSearch.BackColor = System.Drawing.Color.Transparent;
+            this.TbxSearch.BorderColor = System.Drawing.Color.Black;
+            this.TbxSearch.BorderThickness = 2;
+            this.TbxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.TbxSearch.DefaultText = "";
+            this.TbxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.TbxSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.TbxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.TbxSearch.FocusedState.BorderColor = System.Drawing.Color.Transparent;
+            this.TbxSearch.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbxSearch.ForeColor = System.Drawing.Color.Black;
+            this.TbxSearch.HoverState.BorderColor = System.Drawing.Color.White;
+            this.TbxSearch.IconLeftOffset = new System.Drawing.Point(3, 0);
+            this.TbxSearch.IconLeftSize = new System.Drawing.Size(24, 24);
+            this.TbxSearch.IconRight = global::InventDipl.Properties.Resources.search;
+            this.TbxSearch.IconRightCursor = System.Windows.Forms.Cursors.Hand;
+            this.TbxSearch.IconRightSize = new System.Drawing.Size(26, 26);
+            this.TbxSearch.Location = new System.Drawing.Point(256, 10);
+            this.TbxSearch.Margin = new System.Windows.Forms.Padding(5);
+            this.TbxSearch.Name = "TbxSearch";
+            this.TbxSearch.PasswordChar = '\0';
+            this.TbxSearch.PlaceholderForeColor = System.Drawing.Color.Black;
+            this.TbxSearch.PlaceholderText = "Поиск";
+            this.TbxSearch.SelectedText = "";
+            this.TbxSearch.Size = new System.Drawing.Size(303, 36);
+            this.TbxSearch.TabIndex = 2;
+            this.TbxSearch.TextOffset = new System.Drawing.Point(3, 0);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::InventDipl.Properties.Resources.Fon2;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1590, 57);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // BtnClose
             // 
@@ -266,6 +324,25 @@
             this.BtnDel.Text = "Удалить текущий";
             this.BtnDel.TextOffset = new System.Drawing.Point(0, -2);
             this.BtnDel.Visible = false;
+            // 
+            // PbxPhotoUser
+            // 
+            this.PbxPhotoUser.Location = new System.Drawing.Point(10, 76);
+            this.PbxPhotoUser.Name = "PbxPhotoUser";
+            this.PbxPhotoUser.Size = new System.Drawing.Size(193, 176);
+            this.PbxPhotoUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbxPhotoUser.TabIndex = 7;
+            this.PbxPhotoUser.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = global::InventDipl.Properties.Resources.Fon2;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(213, 853);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // guna2Elipse1
             // 
@@ -663,6 +740,14 @@
             this.LblId.TabIndex = 1;
             this.LblId.Text = "Id";
             // 
+            // Pbx
+            // 
+            this.Pbx.Location = new System.Drawing.Point(8, 8);
+            this.Pbx.Name = "Pbx";
+            this.Pbx.Size = new System.Drawing.Size(97, 84);
+            this.Pbx.TabIndex = 0;
+            this.Pbx.TabStop = false;
+            // 
             // LblRurpose
             // 
             this.LblRurpose.BackColor = System.Drawing.Color.Transparent;
@@ -708,6 +793,7 @@
             // 
             this.PanelAddEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.PanelAddEdit.BackColor = System.Drawing.Color.White;
+            this.PanelAddEdit.Controls.Add(this.BtnCancel);
             this.PanelAddEdit.Controls.Add(this.label13);
             this.PanelAddEdit.Controls.Add(this.PbxPhoto);
             this.PanelAddEdit.Controls.Add(this.TbxAccept);
@@ -731,11 +817,37 @@
             this.PanelAddEdit.Controls.Add(this.TbxNum);
             this.PanelAddEdit.Controls.Add(this.TbxName);
             this.PanelAddEdit.Controls.Add(this.LblAddEdit);
-            this.PanelAddEdit.Location = new System.Drawing.Point(224, 76);
+            this.PanelAddEdit.Location = new System.Drawing.Point(224, 476);
             this.PanelAddEdit.Name = "PanelAddEdit";
             this.PanelAddEdit.Size = new System.Drawing.Size(1371, 727);
             this.PanelAddEdit.TabIndex = 3;
             this.PanelAddEdit.Visible = false;
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.BackColor = System.Drawing.Color.White;
+            this.BtnCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.BtnCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.BtnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.BtnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.BtnCancel.FillColor = System.Drawing.Color.Firebrick;
+            this.BtnCancel.Font = new System.Drawing.Font("Felix Titling", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancel.ForeColor = System.Drawing.Color.GhostWhite;
+            this.BtnCancel.HoverState.FillColor = System.Drawing.Color.Maroon;
+            this.BtnCancel.Location = new System.Drawing.Point(37, 29);
+            this.BtnCancel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.PressedColor = System.Drawing.Color.Maroon;
+            this.BtnCancel.ShadowDecoration.BorderRadius = 15;
+            this.BtnCancel.ShadowDecoration.Color = System.Drawing.Color.DimGray;
+            this.BtnCancel.ShadowDecoration.Depth = 20;
+            this.BtnCancel.ShadowDecoration.Enabled = true;
+            this.BtnCancel.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(0, 0, 6, 10);
+            this.BtnCancel.Size = new System.Drawing.Size(326, 45);
+            this.BtnCancel.TabIndex = 27;
+            this.BtnCancel.Text = "‹‹ Отмена операции";
+            this.BtnCancel.TextOffset = new System.Drawing.Point(0, -2);
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // label13
             // 
@@ -746,6 +858,18 @@
             this.label13.Size = new System.Drawing.Size(141, 16);
             this.label13.TabIndex = 26;
             this.label13.Text = "Единица измерения";
+            // 
+            // PbxPhoto
+            // 
+            this.PbxPhoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PbxPhoto.Image = global::InventDipl.Properties.Resources.NoPhoto1;
+            this.PbxPhoto.Location = new System.Drawing.Point(56, 374);
+            this.PbxPhoto.Name = "PbxPhoto";
+            this.PbxPhoto.Size = new System.Drawing.Size(269, 228);
+            this.PbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbxPhoto.TabIndex = 25;
+            this.PbxPhoto.TabStop = false;
+            this.PbxPhoto.DoubleClick += new System.EventHandler(this.PbxPhoto_DoubleClick);
             // 
             // TbxAccept
             // 
@@ -933,13 +1057,13 @@
             this.CmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbUnit.FocusedColor = System.Drawing.Color.Black;
             this.CmbUnit.FocusedState.BorderColor = System.Drawing.Color.Black;
-            this.CmbUnit.Font = new System.Drawing.Font("Felix Titling", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbUnit.Font = new System.Drawing.Font("Felix Titling", 21.75F, System.Drawing.FontStyle.Bold);
             this.CmbUnit.ForeColor = System.Drawing.Color.Black;
             this.CmbUnit.ItemHeight = 44;
             this.CmbUnit.Items.AddRange(new object[] {
-            "штуки",
-            "килограммы",
-            "метры"});
+            "Штуки",
+            "Килограммы",
+            "Метры"});
             this.CmbUnit.Location = new System.Drawing.Point(927, 116);
             this.CmbUnit.Name = "CmbUnit";
             this.CmbUnit.Size = new System.Drawing.Size(421, 50);
@@ -1160,102 +1284,12 @@
             // 
             // guna2Elipse12
             // 
-            this.guna2Elipse12.BorderRadius = 10;
             this.guna2Elipse12.TargetControl = this.PbxPhoto;
             // 
-            // PbxPhoto
+            // guna2Elipse13
             // 
-            this.PbxPhoto.Image = global::InventDipl.Properties.Resources.NoPhoto;
-            this.PbxPhoto.Location = new System.Drawing.Point(56, 374);
-            this.PbxPhoto.Name = "PbxPhoto";
-            this.PbxPhoto.Size = new System.Drawing.Size(269, 228);
-            this.PbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PbxPhoto.TabIndex = 25;
-            this.PbxPhoto.TabStop = false;
-            this.PbxPhoto.DoubleClick += new System.EventHandler(this.PbxPhoto_DoubleClick);
-            // 
-            // Pbx
-            // 
-            this.Pbx.Location = new System.Drawing.Point(8, 8);
-            this.Pbx.Name = "Pbx";
-            this.Pbx.Size = new System.Drawing.Size(97, 84);
-            this.Pbx.TabIndex = 0;
-            this.Pbx.TabStop = false;
-            // 
-            // PbxPhotoUser
-            // 
-            this.PbxPhotoUser.Location = new System.Drawing.Point(10, 76);
-            this.PbxPhotoUser.Name = "PbxPhotoUser";
-            this.PbxPhotoUser.Size = new System.Drawing.Size(193, 176);
-            this.PbxPhotoUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PbxPhotoUser.TabIndex = 7;
-            this.PbxPhotoUser.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::InventDipl.Properties.Resources.Fon2;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(213, 853);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // Zoom
-            // 
-            this.Zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Zoom.BackColor = System.Drawing.Color.Transparent;
-            this.Zoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Zoom.Image = global::InventDipl.Properties.Resources.expand1;
-            this.Zoom.Location = new System.Drawing.Point(1531, 10);
-            this.Zoom.Name = "Zoom";
-            this.Zoom.Size = new System.Drawing.Size(41, 36);
-            this.Zoom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Zoom.TabIndex = 6;
-            this.Zoom.TabStop = false;
-            this.Zoom.Click += new System.EventHandler(this.Zoom_Click);
-            // 
-            // TbxSearch
-            // 
-            this.TbxSearch.BackColor = System.Drawing.Color.Transparent;
-            this.TbxSearch.BorderColor = System.Drawing.Color.Black;
-            this.TbxSearch.BorderThickness = 2;
-            this.TbxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TbxSearch.DefaultText = "";
-            this.TbxSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.TbxSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.TbxSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbxSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.TbxSearch.FocusedState.BorderColor = System.Drawing.Color.Transparent;
-            this.TbxSearch.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbxSearch.ForeColor = System.Drawing.Color.Black;
-            this.TbxSearch.HoverState.BorderColor = System.Drawing.Color.White;
-            this.TbxSearch.IconLeftOffset = new System.Drawing.Point(3, 0);
-            this.TbxSearch.IconLeftSize = new System.Drawing.Size(24, 24);
-            this.TbxSearch.IconRight = global::InventDipl.Properties.Resources.search;
-            this.TbxSearch.IconRightCursor = System.Windows.Forms.Cursors.Hand;
-            this.TbxSearch.IconRightSize = new System.Drawing.Size(26, 26);
-            this.TbxSearch.Location = new System.Drawing.Point(256, 10);
-            this.TbxSearch.Margin = new System.Windows.Forms.Padding(5);
-            this.TbxSearch.Name = "TbxSearch";
-            this.TbxSearch.PasswordChar = '\0';
-            this.TbxSearch.PlaceholderForeColor = System.Drawing.Color.Black;
-            this.TbxSearch.PlaceholderText = "Поиск";
-            this.TbxSearch.SelectedText = "";
-            this.TbxSearch.Size = new System.Drawing.Size(303, 36);
-            this.TbxSearch.TabIndex = 2;
-            this.TbxSearch.TextOffset = new System.Drawing.Point(3, 0);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::InventDipl.Properties.Resources.Fon2;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1590, 57);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.guna2Elipse13.BorderRadius = 15;
+            this.guna2Elipse13.TargetControl = this.BtnCancel;
             // 
             // FormMain
             // 
@@ -1275,20 +1309,20 @@
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Zoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.PanelBtns.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PbxPhotoUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PanelData.ResumeLayout(false);
             this.PanelData.PerformLayout();
             this.guna2CustomGradientPanel2.ResumeLayout(false);
             this.guna2CustomGradientPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pbx)).EndInit();
             this.PanelAddEdit.ResumeLayout(false);
             this.PanelAddEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Pbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxPhotoUser)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Zoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1379,5 +1413,7 @@
         private System.Windows.Forms.PictureBox PbxPhoto;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse12;
+        private Guna.UI2.WinForms.Guna2Button BtnCancel;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse13;
     }
 }

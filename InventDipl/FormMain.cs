@@ -37,12 +37,16 @@ namespace InventDipl
         int Count = 0;
         void GeneratePanel(int Count)
         {
+
             PictureBox Pbx = new PictureBox();
             Pbx.Location = new System.Drawing.Point(8, 8);
             Pbx.Name = "Pbx";
             Pbx.Size = new System.Drawing.Size(97, 84);
             Pbx.TabIndex = 0;
             Pbx.TabStop = false;
+            Pbx.SizeMode = PictureBoxSizeMode.StretchImage;
+            try { Pbx.Image = System.Drawing.Image.FromFile(Photo); }
+            catch { Pbx.Image = System.Drawing.Image.FromFile(Application.StartupPath +"\\Photo\\NoPhoto.jpg"); }
             Pbx.Click += ShowLabelInformation;
 
             System.Windows.Forms.Label LblId = new System.Windows.Forms.Label();
@@ -170,9 +174,9 @@ namespace InventDipl
             | System.Windows.Forms.AnchorStyles.Right)));
             LblNote.BackColor = System.Drawing.Color.Transparent;
             LblNote.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            LblNote.Location = new System.Drawing.Point(1188, 6);
+            LblNote.Location = new System.Drawing.Point(1192, 6);
             LblNote.Name = "LblNote";
-            LblNote.Size = new System.Drawing.Size(164, 96);
+            LblNote.Size = new System.Drawing.Size(160, 96);
             LblNote.TabIndex = 13;
             LblNote.Text = Note;
             LblNote.Click += ShowLabelInformation;
@@ -339,6 +343,14 @@ namespace InventDipl
         }
         string Id, Names, Num, Unit, Price, Counts, Cost, Status, Purpose, AccountNum, BookValue, Note, Photo;
 
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            PhotoCapture = false;
+            PanelAddEdit.Visible = false;
+            PanelData.Visible = true;
+            TbxSearch.Visible = true;
+        }
+
         private void PbxPhoto_DoubleClick(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -358,6 +370,7 @@ namespace InventDipl
                         string debugFilePath = Path.Combine(debugFolderPath, Path.GetFileName(selectedFile));
 
                         File.Copy(selectedFile, Application.StartupPath + debugFilePath, true);
+                        PhotoCapture = true;
                     }
                     catch (Exception ex)
                     {
@@ -367,19 +380,28 @@ namespace InventDipl
             }
         }
 
+        bool PhotoCapture = false;
         private void TbxAccept_Click(object sender, EventArgs e)
         {
             try {
                 SqlConnection Con = new SqlConnection(TxtCon);
-                SqlCommand Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values",Con);
+                SqlCommand Cmd = new SqlCommand();
+                if(PhotoCapture==true)
+                Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{int.Parse(TbxPrice.Text)*int.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Photo}')",Con);
+                else Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{int.Parse(TbxPrice.Text) * int.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Application.StartupPath+"\\Photo\\NoPhoto.jpg"}')", Con);
+                Con.Open();
+                Cmd.ExecuteNonQuery();
+                Con.Close();
+                PhotoCapture = false;
+                PanelAddEdit.Visible = false;
+                PanelData.Visible = true;
+                TbxSearch.Visible = true;
+                ShowDataFromDB();
             }
             catch
             {
-             
+                MessageBox.Show("Введенные данные некорректны","Обратите внимание!");
             }
-            PanelAddEdit.Visible = false;
-            PanelData.Visible = true;
-            TbxSearch.Visible = true;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -390,7 +412,7 @@ namespace InventDipl
         }
 
 
-        private void FormMain_Load(object sender, EventArgs e)
+        void ShowDataFromDB()
         {
             SqlConnection Con = new SqlConnection(TxtCon);
             SqlCommand Cmd = new SqlCommand("select * from Product", Con);
@@ -416,14 +438,10 @@ namespace InventDipl
                     GeneratePanel(Count);
                 }
             Con.Close();
-
-            for (int i = 0; i < 3; i++)
-            {
-                Count++;
-                GeneratePanel(Count);
-            }
-
-        
+        }
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            ShowDataFromDB();
         }
 
         private void Guna2CustomGradientPanel2_Click(object sender, EventArgs e)
