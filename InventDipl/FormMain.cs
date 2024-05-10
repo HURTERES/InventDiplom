@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
@@ -59,6 +60,7 @@ namespace InventDipl
             LblId.Size = new System.Drawing.Size(16, 13);
             LblId.TabIndex = 1;
             LblId.Text = Id;
+            LblId.Visible = false;
             LblId.Click+= ShowLabelInformation;
 
             System.Windows.Forms.Label LblName = new System.Windows.Forms.Label();
@@ -173,14 +175,15 @@ namespace InventDipl
 
             System.Windows.Forms.Label LblNote = new System.Windows.Forms.Label();
             LblNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+            )));
             LblNote.BackColor = System.Drawing.Color.Transparent;
             LblNote.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            LblNote.Location = new System.Drawing.Point(1192, 6);
+            LblNote.Location = new System.Drawing.Point(1190, 8);
             LblNote.Name = "LblNote";
-            LblNote.Size = new System.Drawing.Size(160, 96);
+            LblNote.Size = new System.Drawing.Size(480, 94);
             LblNote.TabIndex = 13;
             LblNote.Text = Note;
+            LblNote.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             LblNote.Click += ShowLabelInformation;
 
             // Разделяющие панели
@@ -248,7 +251,9 @@ namespace InventDipl
             guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(163)))), ((int)(((byte)(249)))));
             guna2CustomGradientPanel2.Location = new System.Drawing.Point(5, 100*Count+15*Count-115);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            guna2CustomGradientPanel2.Size = new System.Drawing.Size(1359, 102);
+            if (this.WindowState != FormWindowState.Maximized)
+                guna2CustomGradientPanel2.Size = new System.Drawing.Size(1359, 102);
+            else guna2CustomGradientPanel2.Size = new System.Drawing.Size(1700, 102);
             guna2CustomGradientPanel2.TabIndex = 1;
             guna2CustomGradientPanel2.Click += Guna2CustomGradientPanel2_Click;
 
@@ -334,7 +339,16 @@ namespace InventDipl
                         }
                         else if (ctrl is System.Windows.Forms.PictureBox Pbx)
                         {
-                            // Обработка PictureBox, если необходимо
+                            SqlConnection Con = new SqlConnection(TxtCon);
+                            SqlCommand Cmd = new SqlCommand($"select * from Product where IdProduct={Id}", Con);
+                            Con.Open();
+                            SqlDataReader Res = Cmd.ExecuteReader();
+                            if (Res != null)
+                                while (Res.Read())
+                                {
+                                    Photo = Res["Photo"].ToString();
+                                }
+                            Con.Close();
                         }
                     }
                 }
@@ -344,6 +358,76 @@ namespace InventDipl
             }
         }
         string Id, Names, Num, Unit, Price, Counts, Cost, Status, Purpose, AccountNum, BookValue, Note, Photo;
+        bool Redact = false;
+
+        private void TbxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TbxNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TbxCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TbxAccountNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void TbxBookValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            LblAddEdit.Text = "Редактирование продукта";
+            TbxName.Text=Names;
+            TbxPrice.Text = Price;
+            TbxNum.Text= Num;
+            TbxBookValue.Text= BookValue;
+            TbxCount.Text= Counts;
+            TbxAccountNum.Text= AccountNum;
+            TbxNote.Text= Note;
+            try
+            {
+                string sourcePath = Application.StartupPath + "\\Photo\\" + Photo;
+                string tempPath = Path.GetTempFileName(); // Создаем временный файл с уникальным именем
+
+                // Копируем файл во временный каталог
+                File.Copy(sourcePath, tempPath, true);
+
+                // Загружаем изображение из временного пути в PictureBox
+                using (var fs = new FileStream(tempPath, FileMode.Open, FileAccess.Read))
+                {
+                    PbxPhoto.Image = System.Drawing.Image.FromStream(fs);
+                    fs.Close();
+                }
+            }
+            catch { PbxPhoto.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\NoPhoto.jpg"); }
+            CmbUnit.Text = Unit;
+            CmbStatus.Text = Status;
+            CmbPurpose.Text = Purpose;
+            PanelAddEdit.Visible = true;
+            PanelData.Visible = false;
+            TbxSearch.Visible = false;
+            PanelNames.Visible = false;
+            BtnDel.Visible = false;
+            BtnEdit.Visible = false;
+            Redact = true;
+            this.ActiveControl = null;
+        }
 
         private void BtnDel_Click(object sender, EventArgs e)
         {
@@ -355,12 +439,16 @@ namespace InventDipl
             Cmd.ExecuteNonQuery();
             Con.Close();
             ShowDataFromDB();
+            BtnEdit.Visible = false;
+            BtnDel.Visible = false;
             MessageBox.Show($"Данные о записи {IdData} удалены");
         }
 
         private void TbxSearch_IconRightClick(object sender, EventArgs e)
         {
             Count = 0;
+            BtnEdit.Visible = false;
+            BtnDel.Visible = false; 
             PanelData.Controls.Clear();
             SqlConnection Con = new SqlConnection(TxtCon);
             SqlCommand Cmd = new SqlCommand($"select * from Product where [Name] like '%{TbxSearch.Text}%'", Con);
@@ -382,7 +470,7 @@ namespace InventDipl
                     AccountNum = Res["AccountNum"].ToString();
                     BookValue = Res["BookValue"].ToString();
                     Note = Res["Note"].ToString();
-                    Photo = Application.StartupPath + "\\Photo\\" + Res["Photo"].ToString();
+                    Photo = Application.StartupPath+"\\Photo\\"+Res["Photo"].ToString();
                     GeneratePanel(Count);
                 }
             Con.Close();
@@ -391,6 +479,8 @@ namespace InventDipl
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             ShowDataFromDB();
+            Redact=false;
+            PhotoCapture = false;
             PhotoCapture = false;
             PanelNames.Visible = true;
             PanelAddEdit.Visible = false;
@@ -410,13 +500,16 @@ namespace InventDipl
                     {
                         string selectedFile = openFileDialog.FileName;
                         PbxPhoto.Image = System.Drawing.Image.FromFile(selectedFile);
-                        Photo = selectedFile.Substring(selectedFile.LastIndexOf('\\') + 1);
+                        Photo = Path.GetFileName(selectedFile);
 
-                        string debugFolderPath = Path.Combine(Application.StartupPath, "\\Photo");
+                        string debugFolderPath = Path.Combine(Application.StartupPath, "Photo");
+                        string debugFilePath = Path.Combine(debugFolderPath, Photo);
+                        if(!(selectedFile.Substring(selectedFile.LastIndexOf('\\')) == debugFilePath.Substring(debugFilePath.LastIndexOf('\\'))))
+                        File.Copy(selectedFile, debugFilePath, true);
 
-                        string debugFilePath = Path.Combine(debugFolderPath, Path.GetFileName(selectedFile));
+                        // Закрыть поток файла после копирования
+                        openFileDialog.Dispose();
 
-                        File.Copy(selectedFile, Application.StartupPath + debugFilePath, true);
                         PhotoCapture = true;
                     }
                     catch (Exception ex)
@@ -430,12 +523,40 @@ namespace InventDipl
         bool PhotoCapture = false;
         private void TbxAccept_Click(object sender, EventArgs e)
         {
+            if (Redact == true)
+            {
+                try
+                {
+                    SqlConnection Con = new SqlConnection(TxtCon);
+                SqlCommand Cmd = new SqlCommand();
+                int IdData = int.Parse(Id);
+                if (PhotoCapture == true)
+                    Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrice.Text}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValue.Text}', Note='{TbxNote.Text}', Photo='{Photo}'  where IdProduct = {Id}", Con);
+                else Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrice.Text}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValue.Text}', Note='{TbxNote.Text}' where IdProduct = {Id}", Con);
+                Con.Open();
+                Cmd.ExecuteNonQuery();
+                Con.Close();
+                    PhotoCapture = false;
+                    PanelAddEdit.Visible = false;
+                    PanelData.Visible = true;
+                    TbxSearch.Visible = true;
+                    PanelNames.Visible = true;
+                    ShowDataFromDB();
+                MessageBox.Show($"Данные о записи {IdData} изменены");
+                    Redact= false;
+                }
+                catch
+                {
+                    MessageBox.Show("Введенные данные некорректны", "Обратите внимание!");
+                }
+            }
+            else
             try {
                 SqlConnection Con = new SqlConnection(TxtCon);
                 SqlCommand Cmd = new SqlCommand();
                 if(PhotoCapture==true)
-                Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{int.Parse(TbxPrice.Text)*int.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Photo}')",Con);
-                else Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{int.Parse(TbxPrice.Text) * int.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Application.StartupPath+"\\Photo\\NoPhoto.jpg"}')", Con);
+                Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{double.Parse(TbxPrice.Text)*double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Photo}')",Con);
+                else Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{double.Parse(TbxPrice.Text) * double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{"NoPhoto.jpg"}')", Con);
                 Con.Open();
                 Cmd.ExecuteNonQuery();
                 Con.Close();
@@ -454,6 +575,7 @@ namespace InventDipl
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            LblAddEdit.Text = "Добавление продукта";
             TbxName.Clear();
             TbxPrice.Clear();
             TbxNum.Clear();
@@ -498,7 +620,7 @@ namespace InventDipl
                     AccountNum = Res["AccountNum"].ToString();
                     BookValue = Res["BookValue"].ToString();
                     Note = Res["Note"].ToString();
-                    Photo = Application.StartupPath + "\\Photo\\" + Res["Photo"].ToString();
+                    Photo = Application.StartupPath+"\\Photo\\"+Res["Photo"].ToString();
                     GeneratePanel(Count);
                 }
             Con.Close();
@@ -574,7 +696,16 @@ namespace InventDipl
                 }
                 else if (control is System.Windows.Forms.PictureBox Pbx)
                 {
-                    
+                    SqlConnection Con = new SqlConnection(TxtCon);
+                    SqlCommand Cmd = new SqlCommand($"select * from Product where IdProduct={Id}", Con);
+                    Con.Open();
+                    SqlDataReader Res = Cmd.ExecuteReader();
+                    if (Res != null)
+                        while (Res.Read())
+                        {
+                            Photo = Res["Photo"].ToString();
+                        }
+                    Con.Close();
                 }
 
             BtnEdit.Visible = true;

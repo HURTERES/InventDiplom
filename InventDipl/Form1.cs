@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -57,8 +58,34 @@ namespace InventDipl
 
         private void ButtonSignIn_Click(object sender, EventArgs e)
         {
-            FormMain Frm = new FormMain();
-            Frm.ShowDialog();
+            int Count = 0;
+            SqlConnection Con = new SqlConnection(FormMain.TxtCon);
+            Con.Open();
+            SqlCommand Cmd = new SqlCommand($"select * from Users", Con);
+            SqlDataReader Res = Cmd.ExecuteReader();
+            if (Res != null)
+            while (Res.Read())
+            {
+                    if (TbxLogin.Text == Res["Login"].ToString() && TbxPass.Text == Res["Password"].ToString())
+                    {
+                        Count++;
+                        FormMain Frm = new FormMain();
+                        try { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\" + Res["Image"].ToString()); }
+                        catch { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\person.png"); }
+                        this.Hide();
+                        Frm.ShowDialog();
+                        this.Show();
+                        TbxLogin.Clear();
+                        TbxPass.Clear();
+                    }
+            }
+            if (Count == 0)
+                MessageBox.Show("Неверный логин или пароль");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

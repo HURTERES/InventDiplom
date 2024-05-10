@@ -48,19 +48,6 @@
             this.guna2Elipse4 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse5 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.PanelData = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.Pn6 = new System.Windows.Forms.Panel();
             this.Pn5 = new System.Windows.Forms.Panel();
@@ -81,6 +68,18 @@
             this.LblId = new System.Windows.Forms.Label();
             this.Pbx = new System.Windows.Forms.PictureBox();
             this.LblRurpose = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2Elipse6 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse7 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse8 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
@@ -116,12 +115,12 @@
             this.guna2Elipse12 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2Elipse13 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.PanelNames = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -307,6 +306,7 @@
             this.BtnEdit.Text = "Изменить текущий";
             this.BtnEdit.TextOffset = new System.Drawing.Point(0, -2);
             this.BtnEdit.Visible = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // BtnDel
             // 
@@ -398,11 +398,231 @@
             this.PanelData.Size = new System.Drawing.Size(1371, 711);
             this.PanelData.TabIndex = 2;
             // 
+            // guna2CustomGradientPanel2
+            // 
+            this.guna2CustomGradientPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn6);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn5);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn4);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn3);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn1);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pn2);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblAccountNum);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblStatus);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblNote);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblTotal);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblBookValue);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblCount);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblPrice);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblUnit);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblNum);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblName);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblId);
+            this.guna2CustomGradientPanel2.Controls.Add(this.Pbx);
+            this.guna2CustomGradientPanel2.Controls.Add(this.LblRurpose);
+            this.guna2CustomGradientPanel2.FillColor = System.Drawing.Color.DarkOrchid;
+            this.guna2CustomGradientPanel2.FillColor2 = System.Drawing.Color.DarkOrchid;
+            this.guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(163)))), ((int)(((byte)(249)))));
+            this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(5, 231);
+            this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
+            this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(1359, 102);
+            this.guna2CustomGradientPanel2.TabIndex = 1;
+            // 
+            // Pn6
+            // 
+            this.Pn6.BackColor = System.Drawing.Color.Black;
+            this.Pn6.Location = new System.Drawing.Point(1188, 0);
+            this.Pn6.Name = "Pn6";
+            this.Pn6.Size = new System.Drawing.Size(2, 84);
+            this.Pn6.TabIndex = 21;
+            // 
+            // Pn5
+            // 
+            this.Pn5.BackColor = System.Drawing.Color.Black;
+            this.Pn5.Location = new System.Drawing.Point(958, 0);
+            this.Pn5.Name = "Pn5";
+            this.Pn5.Size = new System.Drawing.Size(2, 84);
+            this.Pn5.TabIndex = 21;
+            // 
+            // Pn4
+            // 
+            this.Pn4.BackColor = System.Drawing.Color.Black;
+            this.Pn4.Location = new System.Drawing.Point(742, 0);
+            this.Pn4.Name = "Pn4";
+            this.Pn4.Size = new System.Drawing.Size(2, 84);
+            this.Pn4.TabIndex = 21;
+            // 
+            // Pn3
+            // 
+            this.Pn3.BackColor = System.Drawing.Color.Black;
+            this.Pn3.Location = new System.Drawing.Point(578, 0);
+            this.Pn3.Name = "Pn3";
+            this.Pn3.Size = new System.Drawing.Size(2, 84);
+            this.Pn3.TabIndex = 20;
+            // 
+            // Pn1
+            // 
+            this.Pn1.BackColor = System.Drawing.Color.Black;
+            this.Pn1.Location = new System.Drawing.Point(275, 0);
+            this.Pn1.Name = "Pn1";
+            this.Pn1.Size = new System.Drawing.Size(2, 84);
+            this.Pn1.TabIndex = 18;
+            // 
+            // Pn2
+            // 
+            this.Pn2.BackColor = System.Drawing.Color.Black;
+            this.Pn2.Location = new System.Drawing.Point(379, 0);
+            this.Pn2.Name = "Pn2";
+            this.Pn2.Size = new System.Drawing.Size(2, 84);
+            this.Pn2.TabIndex = 19;
+            // 
+            // LblAccountNum
+            // 
+            this.LblAccountNum.BackColor = System.Drawing.Color.Transparent;
+            this.LblAccountNum.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblAccountNum.Location = new System.Drawing.Point(966, 8);
+            this.LblAccountNum.Name = "LblAccountNum";
+            this.LblAccountNum.Size = new System.Drawing.Size(216, 29);
+            this.LblAccountNum.TabIndex = 16;
+            this.LblAccountNum.Text = "Номер счета";
+            this.LblAccountNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblStatus
+            // 
+            this.LblStatus.BackColor = System.Drawing.Color.Transparent;
+            this.LblStatus.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblStatus.Location = new System.Drawing.Point(750, 6);
+            this.LblStatus.Name = "LblStatus";
+            this.LblStatus.Size = new System.Drawing.Size(210, 29);
+            this.LblStatus.TabIndex = 15;
+            this.LblStatus.Text = "Статус";
+            this.LblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblNote
+            // 
+            this.LblNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblNote.BackColor = System.Drawing.Color.Transparent;
+            this.LblNote.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNote.Location = new System.Drawing.Point(1188, 6);
+            this.LblNote.MaximumSize = new System.Drawing.Size(164, 96);
+            this.LblNote.Name = "LblNote";
+            this.LblNote.Size = new System.Drawing.Size(164, 96);
+            this.LblNote.TabIndex = 13;
+            this.LblNote.Text = "Примечание";
+            // 
+            // LblTotal
+            // 
+            this.LblTotal.BackColor = System.Drawing.Color.Transparent;
+            this.LblTotal.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTotal.Location = new System.Drawing.Point(589, 42);
+            this.LblTotal.Name = "LblTotal";
+            this.LblTotal.Size = new System.Drawing.Size(149, 58);
+            this.LblTotal.TabIndex = 8;
+            this.LblTotal.Text = "Сумма";
+            this.LblTotal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblBookValue
+            // 
+            this.LblBookValue.BackColor = System.Drawing.Color.Transparent;
+            this.LblBookValue.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblBookValue.Location = new System.Drawing.Point(966, 42);
+            this.LblBookValue.Name = "LblBookValue";
+            this.LblBookValue.Size = new System.Drawing.Size(216, 58);
+            this.LblBookValue.TabIndex = 12;
+            this.LblBookValue.Text = "Балансовая цена";
+            this.LblBookValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblCount
+            // 
+            this.LblCount.BackColor = System.Drawing.Color.Transparent;
+            this.LblCount.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCount.Location = new System.Drawing.Point(387, 42);
+            this.LblCount.Name = "LblCount";
+            this.LblCount.Size = new System.Drawing.Size(185, 34);
+            this.LblCount.TabIndex = 7;
+            this.LblCount.Text = "Кол-во";
+            this.LblCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblPrice
+            // 
+            this.LblPrice.BackColor = System.Drawing.Color.Transparent;
+            this.LblPrice.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPrice.Location = new System.Drawing.Point(589, 6);
+            this.LblPrice.Name = "LblPrice";
+            this.LblPrice.Size = new System.Drawing.Size(149, 29);
+            this.LblPrice.TabIndex = 6;
+            this.LblPrice.Text = "Цена";
+            this.LblPrice.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblUnit
+            // 
+            this.LblUnit.BackColor = System.Drawing.Color.Transparent;
+            this.LblUnit.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUnit.Location = new System.Drawing.Point(387, 3);
+            this.LblUnit.Name = "LblUnit";
+            this.LblUnit.Size = new System.Drawing.Size(185, 34);
+            this.LblUnit.TabIndex = 5;
+            this.LblUnit.Text = "Ед. измерения";
+            this.LblUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblNum
+            // 
+            this.LblNum.BackColor = System.Drawing.Color.Transparent;
+            this.LblNum.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNum.Location = new System.Drawing.Point(283, 6);
+            this.LblNum.Name = "LblNum";
+            this.LblNum.Size = new System.Drawing.Size(90, 94);
+            this.LblNum.TabIndex = 4;
+            this.LblNum.Text = "Номер";
+            this.LblNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblName
+            // 
+            this.LblName.BackColor = System.Drawing.Color.Transparent;
+            this.LblName.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblName.Location = new System.Drawing.Point(120, 8);
+            this.LblName.Name = "LblName";
+            this.LblName.Size = new System.Drawing.Size(149, 94);
+            this.LblName.TabIndex = 3;
+            this.LblName.Text = "Наименовение хххххххххххххххххххххххххххх";
+            this.LblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // LblId
+            // 
+            this.LblId.AutoSize = true;
+            this.LblId.BackColor = System.Drawing.Color.Transparent;
+            this.LblId.Location = new System.Drawing.Point(112, 8);
+            this.LblId.Name = "LblId";
+            this.LblId.Size = new System.Drawing.Size(16, 13);
+            this.LblId.TabIndex = 1;
+            this.LblId.Text = "Id";
+            // 
+            // Pbx
+            // 
+            this.Pbx.Location = new System.Drawing.Point(8, 8);
+            this.Pbx.Name = "Pbx";
+            this.Pbx.Size = new System.Drawing.Size(97, 84);
+            this.Pbx.TabIndex = 0;
+            this.Pbx.TabStop = false;
+            // 
+            // LblRurpose
+            // 
+            this.LblRurpose.BackColor = System.Drawing.Color.Transparent;
+            this.LblRurpose.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRurpose.Location = new System.Drawing.Point(744, 42);
+            this.LblRurpose.Name = "LblRurpose";
+            this.LblRurpose.Size = new System.Drawing.Size(216, 58);
+            this.LblRurpose.TabIndex = 10;
+            this.LblRurpose.Text = "Целевая функция";
+            this.LblRurpose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1199, 54);
+            this.label9.Location = new System.Drawing.Point(1199, 13);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(164, 36);
             this.label9.TabIndex = 17;
@@ -518,15 +738,6 @@
             this.label15.TabIndex = 4;
             this.label15.Text = "Название";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1305, 9);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Refresh";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -536,225 +747,6 @@
             this.label1.Size = new System.Drawing.Size(373, 34);
             this.label1.TabIndex = 2;
             this.label1.Text = "Данные по оборудованию:";
-            // 
-            // guna2CustomGradientPanel2
-            // 
-            this.guna2CustomGradientPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn6);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn5);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn4);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn3);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn1);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pn2);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblAccountNum);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblStatus);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblNote);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblTotal);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblBookValue);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblCount);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblPrice);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblUnit);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblNum);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblName);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblId);
-            this.guna2CustomGradientPanel2.Controls.Add(this.Pbx);
-            this.guna2CustomGradientPanel2.Controls.Add(this.LblRurpose);
-            this.guna2CustomGradientPanel2.FillColor = System.Drawing.Color.DarkOrchid;
-            this.guna2CustomGradientPanel2.FillColor2 = System.Drawing.Color.DarkOrchid;
-            this.guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(163)))), ((int)(((byte)(249)))));
-            this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(5, 231);
-            this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(1359, 102);
-            this.guna2CustomGradientPanel2.TabIndex = 1;
-            // 
-            // Pn6
-            // 
-            this.Pn6.BackColor = System.Drawing.Color.Black;
-            this.Pn6.Location = new System.Drawing.Point(1188, 0);
-            this.Pn6.Name = "Pn6";
-            this.Pn6.Size = new System.Drawing.Size(2, 84);
-            this.Pn6.TabIndex = 21;
-            // 
-            // Pn5
-            // 
-            this.Pn5.BackColor = System.Drawing.Color.Black;
-            this.Pn5.Location = new System.Drawing.Point(958, 0);
-            this.Pn5.Name = "Pn5";
-            this.Pn5.Size = new System.Drawing.Size(2, 84);
-            this.Pn5.TabIndex = 21;
-            // 
-            // Pn4
-            // 
-            this.Pn4.BackColor = System.Drawing.Color.Black;
-            this.Pn4.Location = new System.Drawing.Point(742, 0);
-            this.Pn4.Name = "Pn4";
-            this.Pn4.Size = new System.Drawing.Size(2, 84);
-            this.Pn4.TabIndex = 21;
-            // 
-            // Pn3
-            // 
-            this.Pn3.BackColor = System.Drawing.Color.Black;
-            this.Pn3.Location = new System.Drawing.Point(578, 0);
-            this.Pn3.Name = "Pn3";
-            this.Pn3.Size = new System.Drawing.Size(2, 84);
-            this.Pn3.TabIndex = 20;
-            // 
-            // Pn1
-            // 
-            this.Pn1.BackColor = System.Drawing.Color.Black;
-            this.Pn1.Location = new System.Drawing.Point(275, 0);
-            this.Pn1.Name = "Pn1";
-            this.Pn1.Size = new System.Drawing.Size(2, 84);
-            this.Pn1.TabIndex = 18;
-            // 
-            // Pn2
-            // 
-            this.Pn2.BackColor = System.Drawing.Color.Black;
-            this.Pn2.Location = new System.Drawing.Point(379, 0);
-            this.Pn2.Name = "Pn2";
-            this.Pn2.Size = new System.Drawing.Size(2, 84);
-            this.Pn2.TabIndex = 19;
-            // 
-            // LblAccountNum
-            // 
-            this.LblAccountNum.BackColor = System.Drawing.Color.Transparent;
-            this.LblAccountNum.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblAccountNum.Location = new System.Drawing.Point(966, 8);
-            this.LblAccountNum.Name = "LblAccountNum";
-            this.LblAccountNum.Size = new System.Drawing.Size(216, 29);
-            this.LblAccountNum.TabIndex = 16;
-            this.LblAccountNum.Text = "Номер счета";
-            this.LblAccountNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblStatus
-            // 
-            this.LblStatus.BackColor = System.Drawing.Color.Transparent;
-            this.LblStatus.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblStatus.Location = new System.Drawing.Point(750, 6);
-            this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(210, 29);
-            this.LblStatus.TabIndex = 15;
-            this.LblStatus.Text = "Статус";
-            this.LblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblNote
-            // 
-            this.LblNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblNote.BackColor = System.Drawing.Color.Transparent;
-            this.LblNote.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNote.Location = new System.Drawing.Point(1188, 6);
-            this.LblNote.Name = "LblNote";
-            this.LblNote.Size = new System.Drawing.Size(164, 96);
-            this.LblNote.TabIndex = 13;
-            this.LblNote.Text = "Примечание";
-            // 
-            // LblTotal
-            // 
-            this.LblTotal.BackColor = System.Drawing.Color.Transparent;
-            this.LblTotal.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTotal.Location = new System.Drawing.Point(589, 42);
-            this.LblTotal.Name = "LblTotal";
-            this.LblTotal.Size = new System.Drawing.Size(149, 58);
-            this.LblTotal.TabIndex = 8;
-            this.LblTotal.Text = "Сумма";
-            this.LblTotal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblBookValue
-            // 
-            this.LblBookValue.BackColor = System.Drawing.Color.Transparent;
-            this.LblBookValue.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblBookValue.Location = new System.Drawing.Point(966, 42);
-            this.LblBookValue.Name = "LblBookValue";
-            this.LblBookValue.Size = new System.Drawing.Size(216, 58);
-            this.LblBookValue.TabIndex = 12;
-            this.LblBookValue.Text = "Балансовая цена";
-            this.LblBookValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblCount
-            // 
-            this.LblCount.BackColor = System.Drawing.Color.Transparent;
-            this.LblCount.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCount.Location = new System.Drawing.Point(387, 42);
-            this.LblCount.Name = "LblCount";
-            this.LblCount.Size = new System.Drawing.Size(185, 34);
-            this.LblCount.TabIndex = 7;
-            this.LblCount.Text = "Кол-во";
-            this.LblCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblPrice
-            // 
-            this.LblPrice.BackColor = System.Drawing.Color.Transparent;
-            this.LblPrice.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPrice.Location = new System.Drawing.Point(589, 6);
-            this.LblPrice.Name = "LblPrice";
-            this.LblPrice.Size = new System.Drawing.Size(149, 29);
-            this.LblPrice.TabIndex = 6;
-            this.LblPrice.Text = "Цена";
-            this.LblPrice.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblUnit
-            // 
-            this.LblUnit.BackColor = System.Drawing.Color.Transparent;
-            this.LblUnit.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUnit.Location = new System.Drawing.Point(387, 3);
-            this.LblUnit.Name = "LblUnit";
-            this.LblUnit.Size = new System.Drawing.Size(185, 34);
-            this.LblUnit.TabIndex = 5;
-            this.LblUnit.Text = "Ед. измерения";
-            this.LblUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblNum
-            // 
-            this.LblNum.BackColor = System.Drawing.Color.Transparent;
-            this.LblNum.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNum.Location = new System.Drawing.Point(283, 6);
-            this.LblNum.Name = "LblNum";
-            this.LblNum.Size = new System.Drawing.Size(90, 94);
-            this.LblNum.TabIndex = 4;
-            this.LblNum.Text = "Номер";
-            this.LblNum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblName
-            // 
-            this.LblName.BackColor = System.Drawing.Color.Transparent;
-            this.LblName.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblName.Location = new System.Drawing.Point(120, 8);
-            this.LblName.Name = "LblName";
-            this.LblName.Size = new System.Drawing.Size(149, 94);
-            this.LblName.TabIndex = 3;
-            this.LblName.Text = "Наименовение хххххххххххххххххххххххххххх";
-            this.LblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // LblId
-            // 
-            this.LblId.AutoSize = true;
-            this.LblId.BackColor = System.Drawing.Color.Transparent;
-            this.LblId.Location = new System.Drawing.Point(112, 8);
-            this.LblId.Name = "LblId";
-            this.LblId.Size = new System.Drawing.Size(16, 13);
-            this.LblId.TabIndex = 1;
-            this.LblId.Text = "Id";
-            // 
-            // Pbx
-            // 
-            this.Pbx.Location = new System.Drawing.Point(8, 8);
-            this.Pbx.Name = "Pbx";
-            this.Pbx.Size = new System.Drawing.Size(97, 84);
-            this.Pbx.TabIndex = 0;
-            this.Pbx.TabStop = false;
-            // 
-            // LblRurpose
-            // 
-            this.LblRurpose.BackColor = System.Drawing.Color.Transparent;
-            this.LblRurpose.Font = new System.Drawing.Font("Felix Titling", 18.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRurpose.Location = new System.Drawing.Point(744, 42);
-            this.LblRurpose.Name = "LblRurpose";
-            this.LblRurpose.Size = new System.Drawing.Size(216, 58);
-            this.LblRurpose.TabIndex = 10;
-            this.LblRurpose.Text = "Целевая функция";
-            this.LblRurpose.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // guna2Elipse6
             // 
@@ -860,7 +852,7 @@
             // 
             this.PbxPhoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PbxPhoto.Image = global::InventDipl.Properties.Resources.NoPhoto1;
-            this.PbxPhoto.Location = new System.Drawing.Point(56, 374);
+            this.PbxPhoto.Location = new System.Drawing.Point(52, 356);
             this.PbxPhoto.Name = "PbxPhoto";
             this.PbxPhoto.Size = new System.Drawing.Size(269, 228);
             this.PbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1017,6 +1009,7 @@
             this.TbxAccountNum.Size = new System.Drawing.Size(421, 51);
             this.TbxAccountNum.TabIndex = 17;
             this.TbxAccountNum.TextOffset = new System.Drawing.Point(3, 0);
+            this.TbxAccountNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxAccountNum_KeyPress);
             // 
             // CmbStatus
             // 
@@ -1145,6 +1138,7 @@
             this.TbxBookValue.Size = new System.Drawing.Size(421, 51);
             this.TbxBookValue.TabIndex = 6;
             this.TbxBookValue.TextOffset = new System.Drawing.Point(3, 0);
+            this.TbxBookValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxBookValue_KeyPress);
             // 
             // TbxCount
             // 
@@ -1173,6 +1167,7 @@
             this.TbxCount.Size = new System.Drawing.Size(421, 51);
             this.TbxCount.TabIndex = 5;
             this.TbxCount.TextOffset = new System.Drawing.Point(3, 0);
+            this.TbxCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxCount_KeyPress);
             // 
             // TbxPrice
             // 
@@ -1201,6 +1196,7 @@
             this.TbxPrice.Size = new System.Drawing.Size(421, 51);
             this.TbxPrice.TabIndex = 4;
             this.TbxPrice.TextOffset = new System.Drawing.Point(3, 0);
+            this.TbxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxPrice_KeyPress);
             // 
             // TbxNum
             // 
@@ -1229,6 +1225,7 @@
             this.TbxNum.Size = new System.Drawing.Size(421, 51);
             this.TbxNum.TabIndex = 3;
             this.TbxNum.TextOffset = new System.Drawing.Point(3, 0);
+            this.TbxNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxNum_KeyPress);
             // 
             // TbxName
             // 
@@ -1290,6 +1287,8 @@
             // 
             // PanelNames
             // 
+            this.PanelNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelNames.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.PanelNames.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelNames.Controls.Add(this.panel7);
@@ -1302,7 +1301,6 @@
             this.PanelNames.Controls.Add(this.panel6);
             this.PanelNames.Controls.Add(this.label8);
             this.PanelNames.Controls.Add(this.panel8);
-            this.PanelNames.Controls.Add(this.label14);
             this.PanelNames.Controls.Add(this.label7);
             this.PanelNames.Controls.Add(this.label15);
             this.PanelNames.Controls.Add(this.label16);
@@ -1315,6 +1313,14 @@
             this.PanelNames.Name = "PanelNames";
             this.PanelNames.Size = new System.Drawing.Size(1371, 100);
             this.PanelNames.TabIndex = 3;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Black;
+            this.panel7.Location = new System.Drawing.Point(279, 54);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(2, 36);
+            this.panel7.TabIndex = 28;
             // 
             // panel3
             // 
@@ -1355,14 +1361,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(2, 84);
             this.panel8.TabIndex = 23;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.Black;
-            this.panel7.Location = new System.Drawing.Point(279, 54);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(2, 36);
-            this.panel7.TabIndex = 28;
             // 
             // FormMain
             // 
@@ -1433,7 +1431,6 @@
         private System.Windows.Forms.Label LblBookValue;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label LblRurpose;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label3;
@@ -1455,7 +1452,6 @@
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse7;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse8;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse9;
-        private System.Windows.Forms.PictureBox PbxPhotoUser;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse10;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse11;
         private System.Windows.Forms.Panel PanelBtns;
@@ -1497,5 +1493,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel7;
+        public System.Windows.Forms.PictureBox PbxPhotoUser;
     }
 }
