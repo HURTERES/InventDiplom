@@ -41,10 +41,6 @@ namespace InventDipl
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.SavedLogin = "";
-            Properties.Settings.Default.SavedPassword = "";
-            Properties.Settings.Default.Save();
-
             this.Close();
         }
 
@@ -82,10 +78,16 @@ namespace InventDipl
                         try { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\" + Res["Image"].ToString()); }
                         catch { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\person.png"); }
 
-                        if (CbxRemember.Checked == true)
+                        if (CbxRemember.Checked) // Проверяем, отмечен ли флажок
                         {
                             Properties.Settings.Default.SavedLogin = TbxLogin.Text;
                             Properties.Settings.Default.SavedPassword = TbxPass.Text;
+                            Properties.Settings.Default.Save();
+                        }
+                        else // Если флажок не отмечен, очищаем сохраненные данные
+                        {
+                            Properties.Settings.Default.SavedLogin = "";
+                            Properties.Settings.Default.SavedPassword = "";
                             Properties.Settings.Default.Save();
                         }
 
@@ -102,7 +104,16 @@ namespace InventDipl
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.SavedLogin))
+            {
+                TbxLogin.Text = Properties.Settings.Default.SavedLogin;
+                TbxPass.Text = Properties.Settings.Default.SavedPassword;
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.SavedLogin) &&
+       !string.IsNullOrEmpty(Properties.Settings.Default.SavedPassword))
+            {
+                ButtonSignIn_Click(sender, e); // Попытка выполнить вход
+            }
         }
     }
 }

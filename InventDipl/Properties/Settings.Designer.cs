@@ -33,8 +33,29 @@ namespace InventDipl.Properties {
                 return ((string)(this["DBInventConnectionString"]));
             }
         }
-
-        public string SavedLogin { get; internal set; }
-        public string SavedPassword { get; internal set; }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedLogin {
+            get {
+                return ((string)(this["SavedLogin"]));
+            }
+            set {
+                this["SavedLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedPassword {
+            get {
+                return ((string)(this["SavedPassword"]));
+            }
+            set {
+                this["SavedPassword"] = value;
+            }
+        }
     }
 }
