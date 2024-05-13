@@ -504,8 +504,11 @@ namespace InventDipl
 
                         string debugFolderPath = Path.Combine(Application.StartupPath, "Photo");
                         string debugFilePath = Path.Combine(debugFolderPath, Photo);
-                        if(!(selectedFile.Substring(selectedFile.LastIndexOf('\\')) == debugFilePath.Substring(debugFilePath.LastIndexOf('\\'))))
-                        File.Copy(selectedFile, debugFilePath, true);
+                        if (!File.Exists(debugFilePath))
+                        {
+                            // Файл не существует, копируем его в эту папку
+                            File.Copy(selectedFile, debugFilePath);
+                        }
 
                         // Закрыть поток файла после копирования
                         openFileDialog.Dispose();
