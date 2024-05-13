@@ -33,5 +33,8 @@ namespace InventDipl.Properties {
                 return ((string)(this["DBInventConnectionString"]));
             }
         }
+
+        public string SavedLogin { get; internal set; }
+        public string SavedPassword { get; internal set; }
     }
 }

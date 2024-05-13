@@ -530,6 +530,8 @@ namespace InventDipl
             {
                 try
                 {
+                    TbxPrice.Text.Replace(",", ".");
+                    TbxBookValue.Text.Replace(",", ".");
                     SqlConnection Con = new SqlConnection(TxtCon);
                 SqlCommand Cmd = new SqlCommand();
                 int IdData = int.Parse(Id);
@@ -555,7 +557,9 @@ namespace InventDipl
             }
             else
             try {
-                SqlConnection Con = new SqlConnection(TxtCon);
+                    TbxPrice.Text.Replace(",", ".");
+                    TbxBookValue.Text.Replace(",", ".");
+                    SqlConnection Con = new SqlConnection(TxtCon);
                 SqlCommand Cmd = new SqlCommand();
                 if(PhotoCapture==true)
                 Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{double.Parse(TbxPrice.Text)*double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Photo}')",Con);

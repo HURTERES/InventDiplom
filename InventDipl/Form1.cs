@@ -22,6 +22,11 @@ namespace InventDipl
         private void Form1_Shown(object sender, EventArgs e)
         {
             TbxPass.UseSystemPasswordChar = true;
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.SavedLogin))
+            {
+                TbxLogin.Text = Properties.Settings.Default.SavedLogin;
+                TbxPass.Text = Properties.Settings.Default.SavedPassword;
+            }
         }
 
         private bool IsSameImage(Image img1, Image img2)
@@ -36,6 +41,10 @@ namespace InventDipl
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.SavedLogin = "";
+            Properties.Settings.Default.SavedPassword = "";
+            Properties.Settings.Default.Save();
+
             this.Close();
         }
 
@@ -72,6 +81,14 @@ namespace InventDipl
                         FormMain Frm = new FormMain();
                         try { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\" + Res["Image"].ToString()); }
                         catch { Frm.PbxPhotoUser.Image = System.Drawing.Image.FromFile(Application.StartupPath + "\\Photo\\person.png"); }
+
+                        if (CbxRemember.Checked == true)
+                        {
+                            Properties.Settings.Default.SavedLogin = TbxLogin.Text;
+                            Properties.Settings.Default.SavedPassword = TbxPass.Text;
+                            Properties.Settings.Default.Save();
+                        }
+
                         this.Hide();
                         Frm.ShowDialog();
                         this.Show();
