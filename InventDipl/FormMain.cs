@@ -524,20 +524,21 @@ namespace InventDipl
         }
 
         bool PhotoCapture = false;
+        string TbxPrices, TbxBookValues;
         private void TbxAccept_Click(object sender, EventArgs e)
         {
             if (Redact == true)
             {
                 try
                 {
-                    TbxPrice.Text.Replace(",", ".");
-                    TbxBookValue.Text.Replace(",", ".");
+                    TbxPrices =TbxPrice.Text.Replace(",", ".");
+                    TbxBookValues=TbxBookValue.Text.Replace(",", ".");
                     SqlConnection Con = new SqlConnection(TxtCon);
                 SqlCommand Cmd = new SqlCommand();
                 int IdData = int.Parse(Id);
                 if (PhotoCapture == true)
-                    Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrice.Text}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValue.Text}', Note='{TbxNote.Text}', Photo='{Photo}'  where IdProduct = {Id}", Con);
-                else Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrice.Text}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValue.Text}', Note='{TbxNote.Text}' where IdProduct = {Id}", Con);
+                    Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrices}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValues}', Note='{TbxNote.Text}', Photo='{Photo}'  where IdProduct = {Id}", Con);
+                else Cmd = new SqlCommand($"update Product set [Name]='{TbxName.Text}', Number='{TbxNum.Text}', Unit='{CmbUnit.Text}', Price='{TbxPrices}', Count='{TbxCount.Text}', Cost='{double.Parse(TbxCount.Text) * double.Parse(TbxPrice.Text)}', Status='{CmbStatus.Text}', Purpose='{CmbPurpose.Text}', AccountNum='{TbxAccountNum.Text}', BookValue='{TbxBookValues}', Note='{TbxNote.Text}' where IdProduct = {Id}", Con);
                 Con.Open();
                 Cmd.ExecuteNonQuery();
                 Con.Close();
@@ -557,13 +558,13 @@ namespace InventDipl
             }
             else
             try {
-                    TbxPrice.Text.Replace(",", ".");
-                    TbxBookValue.Text.Replace(",", ".");
+                    TbxPrices = TbxPrice.Text.Replace(",", ".");
+                    TbxBookValues = TbxBookValue.Text.Replace(",", ".");
                     SqlConnection Con = new SqlConnection(TxtCon);
                 SqlCommand Cmd = new SqlCommand();
                 if(PhotoCapture==true)
-                Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{double.Parse(TbxPrice.Text)*double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{Photo}')",Con);
-                else Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrice.Text}','{TbxCount.Text}','{double.Parse(TbxPrice.Text) * double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValue.Text}','{TbxNote.Text}', '{"NoPhoto.jpg"}')", Con);
+                Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrices}','{TbxCount.Text}','{double.Parse(TbxPrice.Text)*double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValues}','{TbxNote.Text}', '{Photo}')",Con);
+                else Cmd = new SqlCommand($"insert into Product (Name, Number, Unit,Price,Count,Cost,Status,Purpose,AccountNum,BookValue,Note,Photo) values ('{TbxName.Text}', '{TbxNum.Text}','{CmbUnit.Text}','{TbxPrices}','{TbxCount.Text}','{double.Parse(TbxPrice.Text) * double.Parse(TbxCount.Text)}','{CmbStatus.Text}','{CmbPurpose.Text}','{TbxAccountNum.Text}','{TbxBookValues}','{TbxNote.Text}', '{"NoPhoto.jpg"}')", Con);
                 Con.Open();
                 Cmd.ExecuteNonQuery();
                 Con.Close();
